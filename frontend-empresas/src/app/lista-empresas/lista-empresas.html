@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="encabezado">
+    <h2>Gestión de empresas</h2>
+    <button class="btn-agregar" [routerLink]="['/empresa/nueva']">Agregar</button>
+  </div>
+
+  <table class="tabla-empresas">
+    <thead>
+      <tr>
+        <th>No.</th>
+        <th>Estado</th>
+        <th>Nombre Comercial</th>
+        <th>Correo</th>
+        <th>NIT</th>
+        <th>Opciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let empresa of empresas; let i = index"
+          [ngClass]="i % 2 === 0 ? 'fila-par' : 'fila-impar'">
+        <td>{{ i + 1 }}</td>
+        <td><span class="estado">{{ empresa.estado }}</span></td>
+        <td>
+          <a [routerLink]="['/empresa/ver', empresa.id]">{{ empresa.nombreComercial }}</a>
+        </td>
+        <td>{{ empresa.correo }}</td>
+        <td>{{ empresa.NIT }}</td>
+        <td>
+          <button class="btn-opcion editar" [routerLink]="['/empresa/editar', empresa.id]">✏️</button>
+          <button class="btn-opcion eliminar" (click)="eliminarEmpresa(empresa.id)">🗑️</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

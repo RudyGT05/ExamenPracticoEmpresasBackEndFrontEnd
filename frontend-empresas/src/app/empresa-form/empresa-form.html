@@ -1,0 +1,82 @@
+<div class="pagina-formulario">
+  <div class="formulario-container">
+<div class="formulario-header">
+  <h3>
+    {{ modalModo === 'agregar' ? 'Agregar una empresa' :
+       modalModo === 'editar' ? 'Editar una empresa' :
+       'Ver información de la empresa' }}
+  </h3>
+
+  <div class="formulario-botones">
+    @if (modalModo !== 'ver') {
+      <button type="submit" class="btn-guardar" (click)="guardarEmpresa()">Guardar</button>
+      <button type="button" class="btn-cancelar" (click)="cancelar()">Cancelar</button>
+    } @else {
+      <button type="button" class="btn-cancelar" (click)="cancelar()">Volver</button>
+    }
+  </div>
+</div>
+
+
+    <form (ngSubmit)="guardarEmpresa()">
+      <div class="formulario-grid">
+        <div class="campo">
+          <label>Nombre Comercial:</label>
+          <input [(ngModel)]="empresaSeleccionada.nombreComercial"
+                 name="nombreComercial"
+                 [readonly]="modalModo === 'ver'"
+                 required />
+        </div>
+
+        <div class="campo">
+          <label>Razón Social:</label>
+          <input [(ngModel)]="empresaSeleccionada.razonSocial"
+                 name="razonSocial"
+                 [readonly]="modalModo === 'ver'"
+                 required />
+        </div>
+
+        <div class="campo">
+          <label>Teléfono:</label>
+          <input [(ngModel)]="empresaSeleccionada.telefono"
+                 name="telefono"
+                 [readonly]="modalModo === 'ver'"
+                 required />
+        </div>
+
+        <div class="campo">
+          <label>Correo:</label>
+          <input [(ngModel)]="empresaSeleccionada.correo"
+                 name="correo"
+                 [readonly]="modalModo !== 'agregar'"
+                 required />
+        </div>
+        <div class="campo">
+          <label>NIT:</label>
+          <input [(ngModel)]="empresaSeleccionada.NIT"
+                 name="NIT"
+                 [readonly]="modalModo === 'ver'"
+                 required />
+        </div>
+
+        <div class="campo">
+          <label>Estado:</label>
+          <select [(ngModel)]="empresaSeleccionada.estado"
+                  name="estado"
+                  [disabled]="modalModo === 'ver'">
+            <option value="Activo">Activo</option>
+            <option value="Inactivo">Inactivo</option>
+          </select>
+        </div>
+
+        <div class="campo direccion">
+          <label>Dirección:</label>
+          <input [(ngModel)]="empresaSeleccionada.direccion"
+                 name="direccion"
+                 [readonly]="modalModo === 'ver'"
+                 required />
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
